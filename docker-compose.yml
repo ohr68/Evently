@@ -1,6 +1,6 @@
 services:
   evently.api:
-    image: ${DOCKER_REGISTRY}-eventlyapi
+    image: ${DOCKER_REGISTRY-}eventlyapi
     container_name: Evently.Api
     build:
         context: .
