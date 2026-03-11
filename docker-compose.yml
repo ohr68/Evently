@@ -8,6 +8,8 @@ services:
     ports:
       - "5000:8080"
       - "5001:8081"
+    networks:
+      - evently_network
       
   evently.database:
     image: postgres:latest
@@ -20,3 +22,9 @@ services:
       - ./.containers/db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - evently_network
+        
+networks:
+  evently_network:
+    driver: bridge
