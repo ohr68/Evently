@@ -1,14 +1,16 @@
 ﻿using System.Data.Common;
 using Dapper;
 using Evently.Modules.Events.Application.Abstractions.Data;
-using MediatR;
+using Evently.Modules.Events.Application.Abstractions.Messaging;
+using Evently.Modules.Events.Domain.Abstractions;
+using Evently.Modules.Events.Domain.Events;
 
 namespace Evently.Modules.Events.Application.Events.GetEvent;
 
 internal sealed class GetEventQueryHandler(IDbConnectionFactory dbConnectionFactory)
-    : IRequestHandler<GetEventQuery, EventResponse?>
+    : IQueryHandler<GetEventQuery, EventResponse?>
 {
-    public async Task<EventResponse?> Handle(GetEventQuery request, CancellationToken cancellationToken)
+    public async Task<Result<EventResponse?>> Handle(GetEventQuery request, CancellationToken cancellationToken)
     {
         await using DbConnection connection = await dbConnectionFactory.OpenConnectionAsync();
 
@@ -20,13 +22,47 @@ internal sealed class GetEventQueryHandler(IDbConnectionFactory dbConnectionFact
                 description AS {nameof(EventResponse.Description)},
                 location AS {nameof(EventResponse.Location)},
                 starts_at_utc AS {nameof(EventResponse.StartsAtUtc)},
-                ends_at_utc AS {nameof(EventResponse.EndsAtUtc)}
+                ends_at_utc AS {nameof(EventResponse.EndsAtUtc)},
+                tt.id AS {nameof(TicketTypeResponse.TicketTypeId)},
+                tt.name AS {nameof(TicketTypeResponse.Name)},
+                tt.price AS {nameof(TicketTypeResponse.Price)},
+                tt.currency AS {nameof(TicketTypeResponse.Currency)},
+                tt.quantity AS {nameof(TicketTypeResponse.Quantity)}
              FROM events.events
+             LEFT JOIN events.ticket_types tt ON tt.event_id = e.id
              WHERE id = @EventId
              """;
 
-        EventResponse? @event = await connection.QuerySingleOrDefaultAsync<EventResponse>(sql, request);
+        Dictionary<Guid, EventResponse> eventsDictionary = [];
 
-        return @event;
+        await connection.QueryAsync<EventResponse, TicketTypeResponse?, EventResponse>(
+            sql,
+            (@event, ticketType) =>
+            {
+                if (eventsDictionary.TryGetValue(@event.Id, out EventResponse? existingEvent))
+                {
+                    @event = existingEvent;
+                }
+                else
+                {
+                    eventsDictionary.Add(@event.Id, @event);
+                }
+
+                if (ticketType is not null)
+                {
+                    @event.TicketTypes.Add(ticketType);
+                }
+
+                return @event;
+            },
+            request,
+            splitOn: nameof(TicketTypeResponse.TicketTypeId));
+
+        if (!eventsDictionary.TryGetValue(request.EventId, out EventResponse eventResponse))
+        {
+            return Result.Failure<EventResponse?>(EventErrors.NotFound(request.EventId));
+        }
+
+        return eventResponse;
     }
 }

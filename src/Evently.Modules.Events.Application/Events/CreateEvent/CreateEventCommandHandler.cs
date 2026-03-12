@@ -1,17 +1,35 @@
-﻿using Evently.Modules.Events.Application.Abstractions.Data;
+﻿using Evently.Modules.Events.Application.Abstractions.Clock;
+using Evently.Modules.Events.Application.Abstractions.Data;
+using Evently.Modules.Events.Application.Abstractions.Messaging;
+using Evently.Modules.Events.Domain.Abstractions;
+using Evently.Modules.Events.Domain.Categories;
 using Evently.Modules.Events.Domain.Events;
-using MediatR;
 
 namespace Evently.Modules.Events.Application.Events.CreateEvent;
 
 internal sealed class CreateEventCommandHandler(
+    IDateTimeProvider dateTimeProvider,
+    ICategoryRepository categoryRepository,
     IEventRepository eventRepository,
     IUnitOfWork unitOfWork)
-    : IRequestHandler<CreateEventCommand, Guid>
+    : ICommandHandler<CreateEventCommand, Guid>
 {
-    public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
-        var @event = Event.Create(
+        if (request.StartsAtUtc < dateTimeProvider.UtcNow)
+        {
+            return Result.Failure<Guid>(EventErrors.StartDateIntPast);
+        }
+
+        Category? category = await categoryRepository.GetAsync(request.CategoryId, cancellationToken);
+
+        if (category is null)
+        {
+            return Result.Failure<Guid>(CategoryErrors.NotFound(request.CategoryId));
+        }
+
+        Result<Event> result = Event.Create(
+            category,
             request.Title,
             request.Description,
             request.Location,
@@ -19,19 +37,15 @@ internal sealed class CreateEventCommandHandler(
             request.EndsAtUtc
         );
 
-        eventRepository.Insert(@event);
+        if (result.IsFailure)
+        {
+            return Result.Failure<Guid>(result.Error);
+        }
+
+        eventRepository.Insert(result.Value);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return @event.Id;
-    }
-
-    internal sealed class Request
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public DateTime StartsAtUtc { get; set; }
-        public DateTime? EndsAtUtc { get; set; }
+        return result.Value.Id;
     }
 }
