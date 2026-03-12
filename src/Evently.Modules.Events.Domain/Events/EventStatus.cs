@@ -1,9 +1,9 @@
-﻿namespace Evently.Modules.Events.Api.Events;
+﻿namespace Evently.Modules.Events.Domain.Events;
 
 public enum EventStatus
 {
     Draft,
     Published,
     Completed,
-    Cancelled
+    Cancelled,
 }
