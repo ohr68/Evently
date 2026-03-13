@@ -1,4 +1,4 @@
-﻿namespace Evently.Modules.Events.Domain.Abstractions;
+﻿namespace Evently.Common.Domain.Abstractions;
 
 public sealed record ValidationError : Error
 {
@@ -14,6 +14,6 @@ public sealed record ValidationError : Error
 
     public static ValidationError FromResults(IEnumerable<Result> results)
     {
-        return new(results.Where(r => r.IsFailure).Select(r => r.Error).ToArray());
+        return new ValidationError(results.Where(r => r.IsFailure).Select(r => r.Error).ToArray());
     }
 }

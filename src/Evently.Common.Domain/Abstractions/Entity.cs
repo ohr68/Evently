@@ -1,12 +1,8 @@
-﻿namespace Evently.Modules.Events.Domain.Abstractions;
+﻿namespace Evently.Common.Domain.Abstractions;
 
 public abstract class Entity
 {
     private readonly List<IDomainEvent> _domainEvents = [];
-
-    protected Entity()
-    {
-    }
 
     public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.ToList();
 
