@@ -21,6 +21,12 @@
         <Content Include="..\..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
+        <Content Update="modules.events.Development.json">
+            <DependentUpon>modules.events.json</DependentUpon>
+        </Content>
+        <Content Update="appsettings.Development.json">
+            <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
