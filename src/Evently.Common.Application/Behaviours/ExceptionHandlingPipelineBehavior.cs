@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Evently.Common.Application.Behaviours;
 
-internal sealed class ExceptionHandlingPipelineBehaviour<TRequest, TResponse>(
-    ILogger<ExceptionHandlingPipelineBehaviour<TRequest, TResponse>> logger)
+internal sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse>(
+    ILogger<ExceptionHandlingPipelineBehavior<TRequest, TResponse>> logger)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : class
 {
