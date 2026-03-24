@@ -1176,6 +1176,9 @@
       "Evently.Common.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "MediatR.Contracts": "2.0.1"
+        },
         "compile": {
           "bin/placeholder/Evently.Common.Domain.dll": {}
         },
@@ -1271,6 +1274,62 @@
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Events.Presentation.dll": {}
+        }
+      },
+      "Evently.Modules.Users.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Application": "1.0.0",
+          "Evently.Modules.Users.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.Application.dll": {}
+        }
+      },
+      "Evently.Modules.Users.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.Domain.dll": {}
+        }
+      },
+      "Evently.Modules.Users.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Infrastructure": "1.0.0",
+          "Evently.Modules.Users.Application": "1.0.0",
+          "Evently.Modules.Users.Presentation": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.Infrastructure.dll": {}
+        }
+      },
+      "Evently.Modules.Users.Presentation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Presentation": "1.0.0",
+          "Evently.Modules.Users.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.Presentation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.Presentation.dll": {}
         }
       }
     }
@@ -3508,12 +3567,33 @@
       "type": "project",
       "path": "../../Modules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj",
       "msbuildProject": "../../Modules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj"
+    },
+    "Evently.Modules.Users.Application/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.Application/Evently.Modules.Users.Application.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Application/Evently.Modules.Users.Application.csproj"
+    },
+    "Evently.Modules.Users.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.Domain/Evently.Modules.Users.Domain.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Domain/Evently.Modules.Users.Domain.csproj"
+    },
+    "Evently.Modules.Users.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.Infrastructure/Evently.Modules.Users.Infrastructure.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Infrastructure/Evently.Modules.Users.Infrastructure.csproj"
+    },
+    "Evently.Modules.Users.Presentation/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "AspNetCore.HealthChecks.UI.Client >= 9.0.0",
       "Evently.Modules.Events.Infrastructure >= 1.0.0",
+      "Evently.Modules.Users.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.4",
       "Serilog.AspNetCore >= 10.0.0",
@@ -3550,6 +3630,9 @@
           "projectReferences": {
             "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj"
+            },
+            "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Users\\Evently.Modules.Users.Infrastructure\\Evently.Modules.Users.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Users\\Evently.Modules.Users.Infrastructure\\Evently.Modules.Users.Infrastructure.csproj"
             }
           }
         }

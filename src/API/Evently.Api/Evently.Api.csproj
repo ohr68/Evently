@@ -30,10 +30,14 @@
         <Content Update="appsettings.Development.json">
             <DependentUpon>appsettings.json</DependentUpon>
         </Content>
+        <Content Update="modules.users.Development.json">
+            <DependentUpon>modules.users.json</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\Modules\Events\Evently.Modules.Events.Infrastructure\Evently.Modules.Events.Infrastructure.csproj"/>
+        <ProjectReference Include="..\..\Modules\Users\Evently.Modules.Users.Infrastructure\Evently.Modules.Users.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>
