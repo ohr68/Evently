@@ -33,10 +33,14 @@
         <Content Update="modules.users.Development.json">
             <DependentUpon>modules.users.json</DependentUpon>
         </Content>
+        <Content Update="modules.ticketing.Development.json">
+            <DependentUpon>modules.ticketing.json</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\Modules\Events\Evently.Modules.Events.Infrastructure\Evently.Modules.Events.Infrastructure.csproj"/>
+        <ProjectReference Include="..\..\Modules\Ticketing\Evently.Modules.Ticketing.Infrastructure\Evently.Modules.Ticketing.Infrastructure.csproj"/>
         <ProjectReference Include="..\..\Modules\Users\Evently.Modules.Users.Infrastructure\Evently.Modules.Users.Infrastructure.csproj"/>
     </ItemGroup>
 

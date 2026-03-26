@@ -1253,7 +1253,8 @@
         "dependencies": {
           "Evently.Common.Infrastructure": "1.0.0",
           "Evently.Modules.Events.Application": "1.0.0",
-          "Evently.Modules.Events.Presentation": "1.0.0"
+          "Evently.Modules.Events.Presentation": "1.0.0",
+          "Evently.Modules.Events.PublicApi": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Events.Infrastructure.dll": {}
@@ -1276,11 +1277,90 @@
           "bin/placeholder/Evently.Modules.Events.Presentation.dll": {}
         }
       },
+      "Evently.Modules.Events.PublicApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Evently.Modules.Events.PublicApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Events.PublicApi.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Application": "1.0.0",
+          "Evently.Modules.Events.PublicApi": "1.0.0",
+          "Evently.Modules.Ticketing.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.Application.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.Domain.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Infrastructure": "1.0.0",
+          "Evently.Modules.Ticketing.Application": "1.0.0",
+          "Evently.Modules.Ticketing.Presentation": "1.0.0",
+          "Evently.Modules.Ticketing.PublicApi": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.Infrastructure.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.Presentation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Presentation": "1.0.0",
+          "Evently.Modules.Ticketing.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.Presentation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.Presentation.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.PublicApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.PublicApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.PublicApi.dll": {}
+        }
+      },
       "Evently.Modules.Users.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Evently.Common.Application": "1.0.0",
+          "Evently.Modules.Ticketing.PublicApi": "1.0.0",
           "Evently.Modules.Users.Domain": "1.0.0"
         },
         "compile": {
@@ -1309,7 +1389,8 @@
         "dependencies": {
           "Evently.Common.Infrastructure": "1.0.0",
           "Evently.Modules.Users.Application": "1.0.0",
-          "Evently.Modules.Users.Presentation": "1.0.0"
+          "Evently.Modules.Users.Presentation": "1.0.0",
+          "Evently.Modules.Users.PublicApi": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Users.Infrastructure.dll": {}
@@ -1330,6 +1411,16 @@
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Users.Presentation.dll": {}
+        }
+      },
+      "Evently.Modules.Users.PublicApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.PublicApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.PublicApi.dll": {}
         }
       }
     }
@@ -3568,6 +3659,36 @@
       "path": "../../Modules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj",
       "msbuildProject": "../../Modules/Events/Evently.Modules.Events.Presentation/Evently.Modules.Events.Presentation.csproj"
     },
+    "Evently.Modules.Events.PublicApi/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Events/Evently.Modules.Events.PublicApi/Evently.Modules.Events.PublicApi.csproj",
+      "msbuildProject": "../../Modules/Events/Evently.Modules.Events.PublicApi/Evently.Modules.Events.PublicApi.csproj"
+    },
+    "Evently.Modules.Ticketing.Application/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Application/Evently.Modules.Ticketing.Application.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Application/Evently.Modules.Ticketing.Application.csproj"
+    },
+    "Evently.Modules.Ticketing.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Domain/Evently.Modules.Ticketing.Domain.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Domain/Evently.Modules.Ticketing.Domain.csproj"
+    },
+    "Evently.Modules.Ticketing.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Infrastructure/Evently.Modules.Ticketing.Infrastructure.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Infrastructure/Evently.Modules.Ticketing.Infrastructure.csproj"
+    },
+    "Evently.Modules.Ticketing.Presentation/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Presentation/Evently.Modules.Ticketing.Presentation.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Presentation/Evently.Modules.Ticketing.Presentation.csproj"
+    },
+    "Evently.Modules.Ticketing.PublicApi/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.PublicApi/Evently.Modules.Ticketing.PublicApi.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.PublicApi/Evently.Modules.Ticketing.PublicApi.csproj"
+    },
     "Evently.Modules.Users.Application/1.0.0": {
       "type": "project",
       "path": "../../Modules/Users/Evently.Modules.Users.Application/Evently.Modules.Users.Application.csproj",
@@ -3587,12 +3708,18 @@
       "type": "project",
       "path": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj",
       "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj"
+    },
+    "Evently.Modules.Users.PublicApi/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.PublicApi/Evently.Modules.Users.PublicApi.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.PublicApi/Evently.Modules.Users.PublicApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "AspNetCore.HealthChecks.UI.Client >= 9.0.0",
       "Evently.Modules.Events.Infrastructure >= 1.0.0",
+      "Evently.Modules.Ticketing.Infrastructure >= 1.0.0",
       "Evently.Modules.Users.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.4",
@@ -3630,6 +3757,9 @@
           "projectReferences": {
             "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj"
+            },
+            "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Ticketing\\Evently.Modules.Ticketing.Infrastructure\\Evently.Modules.Ticketing.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Ticketing\\Evently.Modules.Ticketing.Infrastructure\\Evently.Modules.Ticketing.Infrastructure.csproj"
             },
             "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Users\\Evently.Modules.Users.Infrastructure\\Evently.Modules.Users.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Users\\Evently.Modules.Users.Infrastructure\\Evently.Modules.Users.Infrastructure.csproj"
