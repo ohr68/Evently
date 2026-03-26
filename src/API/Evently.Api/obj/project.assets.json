@@ -134,6 +134,35 @@
           }
         }
       },
+      "MassTransit/9.0.1": {
+        "type": "package",
+        "dependencies": {
+          "MassTransit.Abstractions": "9.0.1"
+        },
+        "compile": {
+          "lib/net10.0/MassTransit.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/MassTransit.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MassTransit.Abstractions/9.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MediatR/14.1.0": {
         "type": "package",
         "dependencies": {
@@ -1194,6 +1223,7 @@
           "AspNetCore.HealthChecks.Redis": "9.0.0",
           "EFCore.NamingConventions": "10.0.1",
           "Evently.Common.Application": "1.0.0",
+          "MassTransit": "9.0.1",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.5",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0"
         },
@@ -1208,7 +1238,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Evently.Common.Domain": "1.0.0"
+          "Evently.Common.Domain": "1.0.0",
+          "MassTransit.Abstractions": "9.0.1"
         },
         "compile": {
           "bin/placeholder/Evently.Common.Presentation.dll": {}
@@ -1321,8 +1352,7 @@
         "dependencies": {
           "Evently.Common.Infrastructure": "1.0.0",
           "Evently.Modules.Ticketing.Application": "1.0.0",
-          "Evently.Modules.Ticketing.Presentation": "1.0.0",
-          "Evently.Modules.Ticketing.PublicApi": "1.0.0"
+          "Evently.Modules.Ticketing.Presentation": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Ticketing.Infrastructure.dll": {}
@@ -1336,23 +1366,14 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Evently.Common.Presentation": "1.0.0",
-          "Evently.Modules.Ticketing.Application": "1.0.0"
+          "Evently.Modules.Ticketing.Application": "1.0.0",
+          "Evently.Modules.Users.IntegrationEvents": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Ticketing.Presentation.dll": {}
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Ticketing.Presentation.dll": {}
-        }
-      },
-      "Evently.Modules.Ticketing.PublicApi/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "compile": {
-          "bin/placeholder/Evently.Modules.Ticketing.PublicApi.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Evently.Modules.Ticketing.PublicApi.dll": {}
         }
       },
       "Evently.Modules.Users.Application/1.0.0": {
@@ -1360,8 +1381,8 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "Evently.Common.Application": "1.0.0",
-          "Evently.Modules.Ticketing.PublicApi": "1.0.0",
-          "Evently.Modules.Users.Domain": "1.0.0"
+          "Evently.Modules.Users.Domain": "1.0.0",
+          "Evently.Modules.Users.IntegrationEvents": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Users.Application.dll": {}
@@ -1389,14 +1410,26 @@
         "dependencies": {
           "Evently.Common.Infrastructure": "1.0.0",
           "Evently.Modules.Users.Application": "1.0.0",
-          "Evently.Modules.Users.Presentation": "1.0.0",
-          "Evently.Modules.Users.PublicApi": "1.0.0"
+          "Evently.Modules.Users.Presentation": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Users.Infrastructure.dll": {}
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Users.Infrastructure.dll": {}
+        }
+      },
+      "Evently.Modules.Users.IntegrationEvents/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Users.IntegrationEvents.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Users.IntegrationEvents.dll": {}
         }
       },
       "Evently.Modules.Users.Presentation/1.0.0": {
@@ -1411,16 +1444,6 @@
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Users.Presentation.dll": {}
-        }
-      },
-      "Evently.Modules.Users.PublicApi/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "compile": {
-          "bin/placeholder/Evently.Modules.Users.PublicApi.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Evently.Modules.Users.PublicApi.dll": {}
         }
       }
     }
@@ -1566,6 +1589,52 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "MassTransit/9.0.1": {
+      "sha512": "wYMV/TX9AQqG9ybG7i97Et2rjPgIYXmYr3RV5k7ogr/BvPnAF8ohcmeESoTYSgQFWDi2lurKx57uPg1MJ9R0jw==",
+      "type": "package",
+      "path": "masstransit/9.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net10.0/MassTransit.dll",
+        "lib/net10.0/MassTransit.xml",
+        "lib/net472/MassTransit.dll",
+        "lib/net472/MassTransit.xml",
+        "lib/net8.0/MassTransit.dll",
+        "lib/net8.0/MassTransit.xml",
+        "lib/net9.0/MassTransit.dll",
+        "lib/net9.0/MassTransit.xml",
+        "lib/netstandard2.0/MassTransit.dll",
+        "lib/netstandard2.0/MassTransit.xml",
+        "masstransit.9.0.1.nupkg.sha512",
+        "masstransit.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
+    "MassTransit.Abstractions/9.0.1": {
+      "sha512": "Rh3Bj/8VOdaUat2Zepbe1cfqQ+20Pqd9zoUme8w50qXISZ9p6yuxBXNNBazS16TN6Kfd4FLxuMUtjY928Rxqdw==",
+      "type": "package",
+      "path": "masstransit.abstractions/9.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net10.0/MassTransit.Abstractions.dll",
+        "lib/net10.0/MassTransit.Abstractions.xml",
+        "lib/net472/MassTransit.Abstractions.dll",
+        "lib/net472/MassTransit.Abstractions.xml",
+        "lib/net8.0/MassTransit.Abstractions.dll",
+        "lib/net8.0/MassTransit.Abstractions.xml",
+        "lib/net9.0/MassTransit.Abstractions.dll",
+        "lib/net9.0/MassTransit.Abstractions.xml",
+        "lib/netstandard2.0/MassTransit.Abstractions.dll",
+        "lib/netstandard2.0/MassTransit.Abstractions.xml",
+        "masstransit.abstractions.9.0.1.nupkg.sha512",
+        "masstransit.abstractions.nuspec",
+        "mt-logo-small.png"
       ]
     },
     "MediatR/14.1.0": {
@@ -3684,11 +3753,6 @@
       "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Presentation/Evently.Modules.Ticketing.Presentation.csproj",
       "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Presentation/Evently.Modules.Ticketing.Presentation.csproj"
     },
-    "Evently.Modules.Ticketing.PublicApi/1.0.0": {
-      "type": "project",
-      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.PublicApi/Evently.Modules.Ticketing.PublicApi.csproj",
-      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.PublicApi/Evently.Modules.Ticketing.PublicApi.csproj"
-    },
     "Evently.Modules.Users.Application/1.0.0": {
       "type": "project",
       "path": "../../Modules/Users/Evently.Modules.Users.Application/Evently.Modules.Users.Application.csproj",
@@ -3704,15 +3768,15 @@
       "path": "../../Modules/Users/Evently.Modules.Users.Infrastructure/Evently.Modules.Users.Infrastructure.csproj",
       "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Infrastructure/Evently.Modules.Users.Infrastructure.csproj"
     },
+    "Evently.Modules.Users.IntegrationEvents/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Users/Evently.Modules.Users.IntegrationEvents/Evently.Modules.Users.IntegrationEvents.csproj",
+      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.IntegrationEvents/Evently.Modules.Users.IntegrationEvents.csproj"
+    },
     "Evently.Modules.Users.Presentation/1.0.0": {
       "type": "project",
       "path": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj",
       "msbuildProject": "../../Modules/Users/Evently.Modules.Users.Presentation/Evently.Modules.Users.Presentation.csproj"
-    },
-    "Evently.Modules.Users.PublicApi/1.0.0": {
-      "type": "project",
-      "path": "../../Modules/Users/Evently.Modules.Users.PublicApi/Evently.Modules.Users.PublicApi.csproj",
-      "msbuildProject": "../../Modules/Users/Evently.Modules.Users.PublicApi/Evently.Modules.Users.PublicApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
