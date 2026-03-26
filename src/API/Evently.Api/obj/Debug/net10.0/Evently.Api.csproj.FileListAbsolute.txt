@@ -357,12 +357,13 @@ C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Even
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Domain.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Infrastructure.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Presentation.dll
-C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.PublicApi.dll
-C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Users.PublicApi.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Infrastructure.pdb
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Events.PublicApi.pdb
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Application.pdb
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Domain.pdb
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.Presentation.pdb
-C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.PublicApi.pdb
-C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Users.PublicApi.pdb
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\MassTransit.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\MassTransit.Abstractions.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Ulid.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Users.IntegrationEvents.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Users.IntegrationEvents.pdb

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sWNrywL8+ic=",
+  "dgSpecHash": "wOrSM9PBYBA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\API\\Evently.Api\\Evently.Api.csproj",
   "expectedPackageFiles": [
@@ -65,7 +65,8 @@
     "C:\\Users\\Otavio\\.nuget\\packages\\system.composition.convention\\9.0.0\\system.composition.convention.9.0.0.nupkg.sha512",
     "C:\\Users\\Otavio\\.nuget\\packages\\system.composition.hosting\\9.0.0\\system.composition.hosting.9.0.0.nupkg.sha512",
     "C:\\Users\\Otavio\\.nuget\\packages\\system.composition.runtime\\9.0.0\\system.composition.runtime.9.0.0.nupkg.sha512",
-    "C:\\Users\\Otavio\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512"
+    "C:\\Users\\Otavio\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512",
+    "C:\\Users\\Otavio\\.nuget\\packages\\ulid\\1.4.1\\ulid.1.4.1.nupkg.sha512"
   ],
   "logs": []
 }
