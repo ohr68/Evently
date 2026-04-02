@@ -6,6 +6,10 @@
 
     <ItemGroup>
         <PackageReference Include="MassTransit.Abstractions" Version="9.0.1"/>
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.22.0.136894">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

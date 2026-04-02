@@ -4,8 +4,13 @@
         <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0"/>
         <PackageReference Include="EFCore.NamingConventions" Version="10.0.1"/>
         <PackageReference Include="MassTransit" Version="9.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5"/>
         <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.5"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0"/>
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.22.0.136894">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Evently.Common.Application\Evently.Common.Application.csproj"/>

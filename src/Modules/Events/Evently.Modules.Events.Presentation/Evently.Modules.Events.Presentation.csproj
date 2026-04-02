@@ -3,4 +3,10 @@
         <ProjectReference Include="..\..\..\Common\Evently.Common.Presentation\Evently.Common.Presentation.csproj"/>
         <ProjectReference Include="..\Evently.Modules.Events.Application\Evently.Modules.Events.Application.csproj"/>
     </ItemGroup>
+    <ItemGroup>
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.22.0.136894">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

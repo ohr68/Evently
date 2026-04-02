@@ -9,15 +9,21 @@
 
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0"/>
+        <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="9.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.4">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.5"/>
         <PackageReference Include="Serilog.AspNetCore" Version="10.0.0"/>
         <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.1.5"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.5"/>
+        <PackageReference Update="SonarAnalyzer.CSharp" Version="10.22.0.136894">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
