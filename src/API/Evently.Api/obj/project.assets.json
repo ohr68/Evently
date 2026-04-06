@@ -1518,7 +1518,8 @@
         "dependencies": {
           "Evently.Common.Application": "1.0.0",
           "Evently.Modules.Events.PublicApi": "1.0.0",
-          "Evently.Modules.Ticketing.Domain": "1.0.0"
+          "Evently.Modules.Ticketing.Domain": "1.0.0",
+          "Evently.Modules.Ticketing.IntegrationEvents": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Evently.Modules.Ticketing.Application.dll": {}
@@ -1553,6 +1554,19 @@
         },
         "runtime": {
           "bin/placeholder/Evently.Modules.Ticketing.Infrastructure.dll": {}
+        }
+      },
+      "Evently.Modules.Ticketing.IntegrationEvents/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Ticketing.IntegrationEvents.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Ticketing.IntegrationEvents.dll": {}
         }
       },
       "Evently.Modules.Ticketing.Presentation/1.0.0": {
@@ -4151,6 +4165,11 @@
       "type": "project",
       "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.Infrastructure/Evently.Modules.Ticketing.Infrastructure.csproj",
       "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.Infrastructure/Evently.Modules.Ticketing.Infrastructure.csproj"
+    },
+    "Evently.Modules.Ticketing.IntegrationEvents/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Ticketing/Evently.Modules.Ticketing.IntegrationEvents/Evently.Modules.Ticketing.IntegrationEvents.csproj",
+      "msbuildProject": "../../Modules/Ticketing/Evently.Modules.Ticketing.IntegrationEvents/Evently.Modules.Ticketing.IntegrationEvents.csproj"
     },
     "Evently.Modules.Ticketing.Presentation/1.0.0": {
       "type": "project",

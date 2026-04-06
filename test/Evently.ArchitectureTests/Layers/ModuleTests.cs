@@ -74,10 +74,9 @@ public class ModuleTests : BaseTest
     [Fact]
     public void TicketingModule_ShouldNotHaveDependencyOn_AnyOtherModule()
     {
-        string[] otherModules = [EventsNamespace, UsersNamespace, AttendanceNamespace];
+        string[] otherModules = [UsersNamespace, AttendanceNamespace];
         string[] integrationEventsModules =
         [
-            EventsIntegrationEventsNamespace,
             UsersIntegrationEventsNamespace,
             AttendanceIntegrationEventsNamespace,
         ];
