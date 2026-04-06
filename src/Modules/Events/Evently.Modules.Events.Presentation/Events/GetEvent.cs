@@ -13,13 +13,15 @@ internal sealed class GetEvent : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("events/{id:guid}", async (Guid id, ISender sender) =>
+
+        app.MapGet("events/{id}", async (Guid id, ISender sender) =>
             {
-                Result<EventResponse?> result = await sender.Send(new GetEventQuery(id));
+                Result<EventResponse> result = await sender.Send(new GetEventQuery(id));
 
                 return result.Match(Results.Ok, ApiResults.Problem);
             })
-            .RequireAuthorization()
+            .RequireAuthorization(Permissions.GetEvents)
             .WithTags(Tags.Events);
     }
 }
+

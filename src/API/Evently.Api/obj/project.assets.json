@@ -1389,6 +1389,62 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Evently.Modules.Attendance.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Application": "1.0.0",
+          "Evently.Modules.Attendance.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Attendance.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Attendance.Application.dll": {}
+        }
+      },
+      "Evently.Modules.Attendance.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Attendance.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Attendance.Domain.dll": {}
+        }
+      },
+      "Evently.Modules.Attendance.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Infrastructure": "1.0.0",
+          "Evently.Modules.Attendance.Application": "1.0.0",
+          "Evently.Modules.Attendance.Presentation": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Attendance.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Attendance.Infrastructure.dll": {}
+        }
+      },
+      "Evently.Modules.Attendance.Presentation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Evently.Common.Presentation": "1.0.0",
+          "Evently.Modules.Attendance.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Evently.Modules.Attendance.Presentation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Evently.Modules.Attendance.Presentation.dll": {}
+        }
+      },
       "Evently.Modules.Events.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -4036,6 +4092,26 @@
       "path": "../../Common/Evently.Common.Presentation/Evently.Common.Presentation.csproj",
       "msbuildProject": "../../Common/Evently.Common.Presentation/Evently.Common.Presentation.csproj"
     },
+    "Evently.Modules.Attendance.Application/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Attendance/Evently.Modules.Attendance.Application/Evently.Modules.Attendance.Application.csproj",
+      "msbuildProject": "../../Modules/Attendance/Evently.Modules.Attendance.Application/Evently.Modules.Attendance.Application.csproj"
+    },
+    "Evently.Modules.Attendance.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Attendance/Evently.Modules.Attendance.Domain/Evently.Modules.Attendance.Domain.csproj",
+      "msbuildProject": "../../Modules/Attendance/Evently.Modules.Attendance.Domain/Evently.Modules.Attendance.Domain.csproj"
+    },
+    "Evently.Modules.Attendance.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Attendance/Evently.Modules.Attendance.Infrastructure/Evently.Modules.Attendance.Infrastructure.csproj",
+      "msbuildProject": "../../Modules/Attendance/Evently.Modules.Attendance.Infrastructure/Evently.Modules.Attendance.Infrastructure.csproj"
+    },
+    "Evently.Modules.Attendance.Presentation/1.0.0": {
+      "type": "project",
+      "path": "../../Modules/Attendance/Evently.Modules.Attendance.Presentation/Evently.Modules.Attendance.Presentation.csproj",
+      "msbuildProject": "../../Modules/Attendance/Evently.Modules.Attendance.Presentation/Evently.Modules.Attendance.Presentation.csproj"
+    },
     "Evently.Modules.Events.Application/1.0.0": {
       "type": "project",
       "path": "../../Modules/Events/Evently.Modules.Events.Application/Evently.Modules.Events.Application.csproj",
@@ -4111,6 +4187,7 @@
     "net10.0": [
       "AspNetCore.HealthChecks.UI.Client >= 9.0.0",
       "AspNetCore.HealthChecks.Uris >= 9.0.0",
+      "Evently.Modules.Attendance.Infrastructure >= 1.0.0",
       "Evently.Modules.Events.Infrastructure >= 1.0.0",
       "Evently.Modules.Ticketing.Infrastructure >= 1.0.0",
       "Evently.Modules.Users.Infrastructure >= 1.0.0",
@@ -4149,6 +4226,9 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
+            "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Attendance\\Evently.Modules.Attendance.Infrastructure\\Evently.Modules.Attendance.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Attendance\\Evently.Modules.Attendance.Infrastructure\\Evently.Modules.Attendance.Infrastructure.csproj"
+            },
             "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Otavio\\RiderProjects\\Evently\\src\\Modules\\Events\\Evently.Modules.Events.Infrastructure\\Evently.Modules.Events.Infrastructure.csproj"
             },

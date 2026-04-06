@@ -13,13 +13,13 @@ internal sealed class PublishEvent : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("events/{id:guid}/publish", async (Guid id, ISender sender) =>
+        app.MapPut("events/{id}/publish", async (Guid id, ISender sender) =>
             {
                 Result result = await sender.Send(new PublishEventCommand(id));
 
                 return result.Match(Results.NoContent, ApiResults.Problem);
             })
-            .RequireAuthorization()
+            .RequireAuthorization(Permissions.ModifyEvents)
             .WithTags(Tags.Events);
     }
 }

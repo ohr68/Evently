@@ -375,3 +375,13 @@ C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Micr
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\modules.attendance.Development.json
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\modules.attendance.json
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Application.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Domain.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Infrastructure.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Presentation.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Infrastructure.pdb
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Application.pdb
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Domain.pdb
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Presentation.pdb
