@@ -1,4 +1,4 @@
-﻿using Evently.Common.Infrastructure.Interceptors;
+﻿using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Events.Application.Abstractions.Data;
 using Evently.Modules.Events.Domain.Categories;
@@ -7,6 +7,7 @@ using Evently.Modules.Events.Domain.TicketTypes;
 using Evently.Modules.Events.Infrastructure.Categories;
 using Evently.Modules.Events.Infrastructure.Database;
 using Evently.Modules.Events.Infrastructure.Events;
+using Evently.Modules.Events.Infrastructure.Outbox;
 using Evently.Modules.Events.Infrastructure.PublicApi;
 using Evently.Modules.Events.Infrastructure.TicketTypes;
 using Evently.Modules.Events.Presentation;
@@ -39,7 +40,7 @@ public static class EventsModule
                             npgsqlOptionsAction.MigrationsHistoryTable(HistoryRepository.DefaultTableName,
                                 Schemas.Events))
                     .UseSnakeCaseNamingConvention()
-                    .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>()));
+                    .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>()));
 
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventsDbContext>());
 
@@ -48,6 +49,10 @@ public static class EventsModule
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddScoped<IEventsApi, EventsApi>();
+
+            services.Configure<OutboxOptions>(configuration.GetSection("Events:Outbox"));
+
+            services.ConfigureOptions<ConfigureProcessOutboxJob>();
         }
     }
 }

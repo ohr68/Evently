@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Evently.Modules.Events.Infrastructure.Database.Migrations;
 
 /// <inheritdoc />
-public partial class Initial : Migration
+public partial class Create_Database : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,6 +26,23 @@ public partial class Initial : Migration
             constraints: table =>
             {
                 table.PrimaryKey("pk_categories", x => x.id);
+            });
+
+        migrationBuilder.CreateTable(
+            name: "outbox_messages",
+            schema: "events",
+            columns: table => new
+            {
+                id = table.Column<Guid>(type: "uuid", nullable: false),
+                type = table.Column<string>(type: "text", nullable: false),
+                content = table.Column<string>(type: "jsonb", maxLength: 2000, nullable: false),
+                occurred_on_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                processed_on_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                error = table.Column<string>(type: "text", nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("pk_outbox_messages", x => x.id);
             });
 
         migrationBuilder.CreateTable(
@@ -94,6 +111,10 @@ public partial class Initial : Migration
     /// <inheritdoc />
     protected override void Down(MigrationBuilder migrationBuilder)
     {
+        migrationBuilder.DropTable(
+            name: "outbox_messages",
+            schema: "events");
+
         migrationBuilder.DropTable(
             name: "ticket_types",
             schema: "events");
