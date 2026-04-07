@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Evently.Modules.Events.Infrastructure.Database.Migrations;
 
 /// <inheritdoc />
-public partial class Create_Database : Migration
+public partial class Initial : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,6 +26,19 @@ public partial class Create_Database : Migration
             constraints: table =>
             {
                 table.PrimaryKey("pk_categories", x => x.id);
+            });
+
+        migrationBuilder.CreateTable(
+            name: "outbox_message_consumers",
+            schema: "events",
+            columns: table => new
+            {
+                outbox_message_id = table.Column<Guid>(type: "uuid", nullable: false),
+                name = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("pk_outbox_message_consumers", x => new { x.outbox_message_id, x.name });
             });
 
         migrationBuilder.CreateTable(
@@ -111,6 +124,10 @@ public partial class Create_Database : Migration
     /// <inheritdoc />
     protected override void Down(MigrationBuilder migrationBuilder)
     {
+        migrationBuilder.DropTable(
+            name: "outbox_message_consumers",
+            schema: "events");
+
         migrationBuilder.DropTable(
             name: "outbox_messages",
             schema: "events");

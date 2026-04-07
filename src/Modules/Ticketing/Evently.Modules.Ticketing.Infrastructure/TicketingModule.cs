@@ -1,4 +1,5 @@
-﻿using Evently.Common.Infrastructure.Outbox;
+﻿using Evently.Common.Application.Messaging;
+using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Ticketing.Application.Abstractions.Authentication;
 using Evently.Modules.Ticketing.Application.Abstractions.Data;
@@ -24,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Evently.Modules.Ticketing.Infrastructure;
 
@@ -36,13 +38,13 @@ public static class TicketingModule
 
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddTicketingModule(IConfiguration configuration)
+        public void AddTicketingModule(IConfiguration configuration)
         {
+            services.AddDomainEventHandlers();
+
             services.AddInfrastructure(configuration);
 
             services.AddEndpoints([AssemblyReference.Assembly]);
-
-            return services;
         }
 
         private void AddInfrastructure(IConfiguration configuration)
@@ -73,6 +75,29 @@ public static class TicketingModule
             services.Configure<OutboxOptions>(configuration.GetSection("Ticketing:Outbox"));
 
             services.ConfigureOptions<ConfigureProcessOutboxJob>();
+        }
+
+        private void AddDomainEventHandlers()
+        {
+            Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+                .GetTypes()
+                .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+                .ToArray();
+
+            foreach (Type domainEventHandler in domainEventHandlers)
+            {
+                services.TryAddScoped(domainEventHandler);
+
+                Type domainEvent = domainEventHandler
+                    .GetInterfaces()
+                    .Single(i => i.IsGenericType)
+                    .GetGenericArguments()
+                    .Single();
+
+                Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+                services.Decorate(domainEventHandler, closedIdempotentHandler);
+            }
         }
     }
 }

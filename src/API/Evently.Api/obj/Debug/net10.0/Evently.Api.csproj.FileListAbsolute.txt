@@ -387,3 +387,6 @@ C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Even
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Attendance.Presentation.pdb
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.IntegrationEvents.dll
 C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Evently.Modules.Ticketing.IntegrationEvents.pdb
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Quartz.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Quartz.Extensions.DependencyInjection.dll
+C:\Users\Otavio\RiderProjects\Evently\src\API\Evently.Api\bin\Debug\net10.0\Quartz.Extensions.Hosting.dll

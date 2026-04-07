@@ -3,9 +3,11 @@ using System.Data.Common;
 using Dapper;
 using Evently.Common.Application.Clock;
 using Evently.Common.Application.Data;
+using Evently.Common.Application.Messaging;
 using Evently.Common.Domain.Abstractions;
+using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Infrastructure.Serialization;
-using MediatR;
+using Evently.Modules.Attendance.Application;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -15,7 +17,7 @@ using Quartz;
 namespace Evently.Modules.Attendance.Infrastructure.Outbox;
 
 [DisallowConcurrentExecution]
-internal sealed class ProcessOutboxJob(
+internal sealed partial class ProcessOutboxJob(
     IDbConnectionFactory dbConnectionFactory,
     IServiceScopeFactory serviceScopeFactory,
     IDateTimeProvider dateTimeProvider,
@@ -26,7 +28,7 @@ internal sealed class ProcessOutboxJob(
 
     public async Task Execute(IJobExecutionContext context)
     {
-        logger.LogInformation("{Module} - Beginning to process outbox messages", ModuleName);
+        LogModuleBeginningToProcessOutboxMessages(ModuleName);
 
         await using DbConnection connection = await dbConnectionFactory.OpenConnectionAsync();
         await using DbTransaction transaction = await connection.BeginTransactionAsync();
@@ -44,9 +46,15 @@ internal sealed class ProcessOutboxJob(
 
                 using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-                IPublisher publisher = scope.ServiceProvider.GetRequiredService<IPublisher>();
+                IEnumerable<IDomainEventHandler> domainEventHandlers = DomainEventHandlersFactory.GetHandlers(
+                    domainEvent.GetType(),
+                    scope.ServiceProvider,
+                    AssemblyReference.Assembly);
 
-                await publisher.Publish(domainEvent);
+                foreach (IDomainEventHandler domainEventHandler in domainEventHandlers)
+                {
+                    await domainEventHandler.Handle(domainEvent);
+                }
             }
             catch (Exception caughtException)
             {
@@ -64,7 +72,7 @@ internal sealed class ProcessOutboxJob(
 
         await transaction.CommitAsync();
 
-        logger.LogInformation("{Module} - Completed processing outbox messages", ModuleName);
+        LogModuleCompletedProcessingOutboxMessages(ModuleName);
     }
 
     private async Task<IReadOnlyList<OutboxMessageResponse>> GetOutboxMessagesAsync(
@@ -114,6 +122,12 @@ internal sealed class ProcessOutboxJob(
             },
             transaction);
     }
+
+    [LoggerMessage(LogLevel.Information, "{Module} - Beginning to process outbox messages")]
+    partial void LogModuleBeginningToProcessOutboxMessages(string module);
+
+    [LoggerMessage(LogLevel.Information, "{Module} - Completed processing outbox messages")]
+    partial void LogModuleCompletedProcessingOutboxMessages(string module);
 
     internal sealed record OutboxMessageResponse(Guid Id, string Content);
 }

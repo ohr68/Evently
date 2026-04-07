@@ -48,6 +48,19 @@ public partial class Create_Database : Migration
             });
 
         migrationBuilder.CreateTable(
+            name: "outbox_message_consumers",
+            schema: "ticketing",
+            columns: table => new
+            {
+                outbox_message_id = table.Column<Guid>(type: "uuid", nullable: false),
+                name = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("pk_outbox_message_consumers", x => new { x.outbox_message_id, x.name });
+            });
+
+        migrationBuilder.CreateTable(
             name: "outbox_messages",
             schema: "ticketing",
             columns: table => new
@@ -293,6 +306,10 @@ public partial class Create_Database : Migration
     {
         migrationBuilder.DropTable(
             name: "order_items",
+            schema: "ticketing");
+
+        migrationBuilder.DropTable(
+            name: "outbox_message_consumers",
             schema: "ticketing");
 
         migrationBuilder.DropTable(
