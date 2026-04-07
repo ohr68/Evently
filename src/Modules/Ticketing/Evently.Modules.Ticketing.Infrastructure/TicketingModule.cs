@@ -1,4 +1,5 @@
-﻿using Evently.Common.Application.Messaging;
+﻿using Evently.Common.Application.EventBus;
+using Evently.Common.Application.Messaging;
 using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Ticketing.Application.Abstractions.Authentication;
@@ -14,6 +15,7 @@ using Evently.Modules.Ticketing.Infrastructure.Authentication;
 using Evently.Modules.Ticketing.Infrastructure.Customers;
 using Evently.Modules.Ticketing.Infrastructure.Database;
 using Evently.Modules.Ticketing.Infrastructure.Events;
+using Evently.Modules.Ticketing.Infrastructure.Inbox;
 using Evently.Modules.Ticketing.Infrastructure.Orders;
 using Evently.Modules.Ticketing.Infrastructure.Outbox;
 using Evently.Modules.Ticketing.Infrastructure.Payments;
@@ -41,6 +43,8 @@ public static class TicketingModule
         public void AddTicketingModule(IConfiguration configuration)
         {
             services.AddDomainEventHandlers();
+
+            services.AddIntegrationEventHandlers();
 
             services.AddInfrastructure(configuration);
 
@@ -74,6 +78,10 @@ public static class TicketingModule
 
             services.Configure<OutboxOptions>(configuration.GetSection("Ticketing:Outbox"));
 
+            services.Configure<InboxOptions>(configuration.GetSection("Ticketing:Inbox"));
+
+            services.ConfigureOptions<ConfigureProcessInboxJob>();
+
             services.ConfigureOptions<ConfigureProcessOutboxJob>();
         }
 
@@ -97,6 +105,31 @@ public static class TicketingModule
                 Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
 
                 services.Decorate(domainEventHandler, closedIdempotentHandler);
+            }
+        }
+
+
+        private void AddIntegrationEventHandlers()
+        {
+            Type[] integrationEventHandlers = AssemblyReference.Assembly
+                .GetTypes()
+                .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+                .ToArray();
+
+            foreach (Type integrationEventHandler in integrationEventHandlers)
+            {
+                services.TryAddScoped(integrationEventHandler);
+
+                Type integrationEvent = integrationEventHandler
+                    .GetInterfaces()
+                    .Single(i => i.IsGenericType)
+                    .GetGenericArguments()
+                    .Single();
+
+                Type closedIdempotentHandler =
+                    typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+                services.Decorate(integrationEventHandler, closedIdempotentHandler);
             }
         }
     }

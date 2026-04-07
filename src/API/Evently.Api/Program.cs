@@ -1,12 +1,13 @@
+using System.Reflection;
 using Evently.Api.Extensions;
 using Evently.Api.Middleware;
 using Evently.Common.Application;
 using Evently.Common.Infrastructure;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Attendance.Infrastructure;
-using Evently.Modules.Events.Application;
 using Evently.Modules.Events.Infrastructure;
 using Evently.Modules.Ticketing.Infrastructure;
+using Evently.Modules.Users.Application;
 using Evently.Modules.Users.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -19,33 +20,38 @@ builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configu
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.CustomSchemaIds(t => t.FullName?.Replace("+", "."));
-});
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerDocumentation();
 
-builder.Services.AddApplication([
+Assembly[] moduleApplicationAssemblies =
+[
     AssemblyReference.Assembly,
-    Evently.Modules.Users.Application.AssemblyReference.Assembly,
+    Evently.Modules.Events.Application.AssemblyReference.Assembly,
     Evently.Modules.Ticketing.Application.AssemblyReference.Assembly,
     Evently.Modules.Attendance.Application.AssemblyReference.Assembly,
-]);
+];
+
+builder.Services.AddApplication(moduleApplicationAssemblies);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
 builder.Services.AddInfrastructure(
-    [TicketingModule.ConfigureConsumers],
+    [
+        TicketingModule.ConfigureConsumers,
+        AttendanceModule.ConfigureConsumers,
+    ],
     databaseConnectionString,
     redisConnectionString);
 
 builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing", "attendance"]);
 
+Uri keyCloakHealthUrl = builder.Configuration.GetKeyCloakHealthUrl();
+
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
     .AddRedis(redisConnectionString)
-    .AddUrlGroup(new Uri(builder.Configuration.GetValue<string>("KeyCloak:HealthUrl")!), HttpMethod.Get, "keycloak");
+    .AddKeyCloak(keyCloakHealthUrl);
 
 builder.Services.AddEventsModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
@@ -58,14 +64,11 @@ WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 
     app.ApplyMigrations();
 }
-
-app.MapEndpoints();
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {
@@ -79,5 +82,7 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.MapEndpoints();
 
 await app.RunAsync();

@@ -6,6 +6,8 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\Common\Evently.Common.Infrastructure\Evently.Common.Infrastructure.csproj"/>
+        <ProjectReference Include="..\..\Ticketing\Evently.Modules.Ticketing.IntegrationEvents\Evently.Modules.Ticketing.IntegrationEvents.csproj"/>
+        <ProjectReference Include="..\..\Users\Evently.Modules.Users.IntegrationEvents\Evently.Modules.Users.IntegrationEvents.csproj"/>
         <ProjectReference Include="..\Evently.Modules.Attendance.Application\Evently.Modules.Attendance.Application.csproj"/>
         <ProjectReference Include="..\Evently.Modules.Attendance.Presentation\Evently.Modules.Attendance.Presentation.csproj"/>
     </ItemGroup>
