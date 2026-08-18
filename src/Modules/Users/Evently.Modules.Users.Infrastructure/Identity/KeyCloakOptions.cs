@@ -1,6 +1,6 @@
 ﻿namespace Evently.Modules.Users.Infrastructure.Identity;
 
-internal sealed class KeyCloakOptions
+public sealed class KeyCloakOptions
 {
     public string AdminUrl { get; set; }
     public string TokenUrl { get; set; }

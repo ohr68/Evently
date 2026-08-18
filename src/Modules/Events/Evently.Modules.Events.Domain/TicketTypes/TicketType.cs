@@ -45,6 +45,6 @@ public sealed class TicketType : Entity
 
         Price = price;
 
-        Raise(new TicketPriceChangedDomainEvent(Id, Price));
+        Raise(new TicketTypePriceChangedDomainEvent(Id, Price));
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Evently.Modules.Users.Presentation.Users;
 
-internal sealed class RegisterUser : IEndpoint
+public sealed class RegisterUser : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
@@ -27,7 +27,7 @@ internal sealed class RegisterUser : IEndpoint
             .WithTags(Tags.Users);
     }
 
-    internal sealed class Request
+    public sealed class Request
     {
         public string Email { get; init; }
 
